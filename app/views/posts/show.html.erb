@@ -1,2 +1,27 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
+
+<%= form_tag "/comments", method: "post" do %>
+  <input type="text" name="author" value="Votre nom"/>
+  <input type="text" name="content" value="Votre commentaire"/>
+  <select name="post_id">
+    <% @posts.each do |post| %>
+      <option value="<%= post.id %>"><%= post.title %>
+      </option>
+    <% end %>
+  </select>
+  <input type="submit" value="Valider" />
+<% end %>
+
+<p>COMMENTAIRES</p>
+
+<p><% @post.comments.each do |comment| %>
+    <p><%= comment.content %><br>Auteur: <%= comment.author %></p>
+
+    <% end %>
+
+
+</p>
+
+
+<p><a href="/posts">Retourner à l'index</a></p>
